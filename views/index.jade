@@ -1,5 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div(class="jumbotron")
+    div(class="container")
+        h1
+        img(src="images/darlek.png", alt="Examinate Logo", height="120", width="100")
+        p Examinate
+        h3  Practice exams and crowd sourced answers
+        button(class="btn btn-default btn-lg")
+            i(class="fa fa-facebook") | Sign in with Facebook.
