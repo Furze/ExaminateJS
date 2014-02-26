@@ -1,5 +1,5 @@
 doctype html
-html
+html(lang="en")
   head
     meta(name='viewport', content='width=device-width, initial-scale=1')
     meta(name='author', content='Michael Wildman')
@@ -19,16 +19,10 @@ html
             span(class="icon-bar")
             span(class="icon-bar")
             span(class="icon-bar")
-          a(class="navbar-brand", href="#")
+          a(class="navbar-brand", href="/")
             img(src="/images/blue_darlek.png", alt="Examinate Logo", height="20", width="18")
         div(class="collapse navbar-collapse")
-          ul(class="nav navbar-nav")
-            li(class="active")
-              a(href="#")
-                p Home
-            li
-              a(href="about", action="index")
-                p About
+          block nav
     block content
     script(src="http://code.jquery.com/jquery-latest.min.js")
     script(src="/javascripts/bootstrap.min.js")

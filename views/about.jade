@@ -1,5 +1,36 @@
 extends layout
 
+block nav
+  ul(class="nav navbar-nav")
+    li(class="active")
+      a(href="/")
+        p Home
+    li
+      a(href="about")
+        p About
+
 block content
-  h1= title
-  p Welcome to #{title}
+  div
+    div(class="minitron smallbreak")
+      div(class="container")
+        h4 About Examinate
+    div(class="smallbreak", style="text-align: center")
+        h3 Examinate is the best way to help you practise for your exams
+        p(class="smallbreak")
+         p Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah<br/>
+         p blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah<br/>
+         p blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah<br/>
+         p blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah<br/>
+         p blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah<br/>
+    div(class="smallbreak")
+      div(class="jumbotron")
+        div(class="container")
+          div(class="col-sm-4")
+            h4 Practice exams
+            img(src="/images/darlek.png", alt="Examinate Logo", height="60", width="55")
+          div(class="col-sm-4")
+            h4 Crowd sourced answers
+            img(src="/images/darlek.png", alt="Examinate Logo", height="60", width="55")
+          div(class="col-sm-4")
+            h4 Something else
+            img(src="/images/darlek.png", alt="Examinate Logo", height="60", width="55")
