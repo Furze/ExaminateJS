@@ -8,5 +8,5 @@ exports.index = function(req, res){
 };
 
 exports.login = function(req, res){
-    res.render('login', { title: 'Examinate - login' });
+    res.render('login', { title: 'Examinate - Login' });
 };
