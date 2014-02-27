@@ -1,17 +1,37 @@
 extends indexMenu
+
 block homeNav
   li(class="active")
     a(href="/")
       p Home
 block content
-  div(class="jumbotron")
-    div(class="container")
-        h1
-        img(src="images/darlek.png", alt="Examinate Logo", height="120", width="100")
-        p Examinate
-        h3  Practice exams and crowd sourced answers
-        block message
-          h4  Coming soon
-        a(href="/auth/facebook")
-            button(class="btn btn-default btn-lg")
-                i(class="fa fa-facebook")   | Sign in with Facebook
+    if !user
+      div(class="jumbotron")
+       div(class="container")
+         h1
+           img(src="images/darlek.png", alt="Examinate Logo", height="120", width="100")
+           p Examinate
+           h3  Practice exams and crowd sourced answers
+           block message
+           a(href="/auth/facebook")
+             button(class="btn btn-default btn-lg")
+               i(class="fa fa-facebook")   | Sign in with Facebook
+    else
+      div(class="minitron")
+        div(class="container")
+            div.welcomebox
+              h3 Welcome, #{user.displayName}
+      div(class="container")
+        p  Your userid is #{user.id}
+        h2 What would you like to do?
+      div(class="smallbreak")
+        div(class="container")
+          div(class="col-sm-3 jumbotron")
+            h4 Submit Answer
+            img(src="/images/darlek.png", alt="Examinate Logo", height="60", width="55")
+          div(class="col-sm-3 jumbotron")
+            h4 Check Answers
+            img(src="/images/darlek.png", alt="Examinate Logo", height="60", width="55")
+          div(class="col-sm-3 jumbotron")
+            h4 Modify Answers
+            img(src="/images/darlek.png", alt="Examinate Logo", height="60", width="55")

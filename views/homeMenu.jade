@@ -3,10 +3,22 @@ block nav
   ul(class="nav navbar-nav")
     block homeNav
       li
-        a(href="/")
+        a(href="/home")
           p Home
-    block aboutNav
+    block submitNav
       li
-        a(href="about")
-          p About
+        a(href="/Submit")
+          p Submit
+    block checkNav
+      li
+        a(href="/Check")
+          p Check
+    block modifyNav
+      li
+        a(href="/Modify")
+          p Modify
+    block logoutNav
+      li
+        a(href="logout")
+          p Logout
 block content

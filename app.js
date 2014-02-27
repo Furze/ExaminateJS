@@ -50,7 +50,7 @@ passport.use(new FacebookStrategy({
         clientID: FACEBOOK_APP_ID,
         clientSecret: FACEBOOK_APP_SECRET,
         callbackURL: "http://examinate.azurewebsites.net/auth/facebook/callback"
-        //callbackURL: "http://localhost:3000/auth/facebook/callback"
+            //callbackURL: "http://localhost:3000/auth/facebook/callback"
 
     },
     function(accessToken, refreshToken, profile, done) {
@@ -62,15 +62,15 @@ passport.use(new FacebookStrategy({
 ));
 
 
-app.get('/', routes.index);
+//app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/login', routes.login);
 app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback',  passport.authenticate('facebook', { successRedirect: '/home',
+app.get('/auth/facebook/callback',  passport.authenticate('facebook', { successRedirect: '/',
         failureRedirect: '/login' }));
 
-app.get('/home', ensureAuthenticated, function(req, res){
-    res.render('home', { user: req.user, title: 'Examinate - Home' });
+app.get('/', function(req, res){
+    res.render('index', { user: req.user, title: 'Examinate - Home' });
 });
 
 app.get('/logout', function(req, res){
