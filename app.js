@@ -5,7 +5,6 @@
 
 var express = require('express');
 var routes = require('./routes');
-var aboutHandler = require('./routes/about');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var http = require('http');
@@ -47,11 +46,11 @@ if ('development' == app.get('env')) {
 }
 
 
-
 passport.use(new FacebookStrategy({
         clientID: FACEBOOK_APP_ID,
         clientSecret: FACEBOOK_APP_SECRET,
-        callbackURL: "http://examinate.azurewebsites.net/auth/facebook/callback"// callbackURL: //"http://examinate.azurewebsites.net/auth/facebook/callback"//
+        callbackURL: "http://examinate.azurewebsites.net/auth/facebook/callback"
+        //callbackURL: "http://localhost:3000/auth/facebook/callback"
 
     },
     function(accessToken, refreshToken, profile, done) {
@@ -64,7 +63,7 @@ passport.use(new FacebookStrategy({
 
 
 app.get('/', routes.index);
-app.get('/about', aboutHandler.about);
+app.get('/about', routes.about);
 app.get('/login', routes.login);
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',  passport.authenticate('facebook', { successRedirect: '/home',
