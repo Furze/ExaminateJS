@@ -86,12 +86,12 @@ app.get('/', function(req, res){
 app.get('/submit', ensureAuthenticated, function(req, res){
     var result;
     //if(req.query.searchTerm){
-        connection.query('SELECT * FROM *', function(err, rows) {
-            if(err) {return console.log(err);}// connected! (unless `err` is set)
-            console.log(rows);
-            result= rows;
-        });
-        //SQL TO GET ALL COURSES
+    connection.query('SELECT * FROM *', function(err, rows) {
+      if(err) {return console.log(err);}// connected! (unless `err` is set)
+      console.log(rows);
+      result= rows;
+    });
+    console.log(result);    //SQL TO GET ALL COURSES
        //RESULT TO JSON
    // }
     res.render('submitIndex', { user: req.user, title: 'Examinate - Submit', result: result });
