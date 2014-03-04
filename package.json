@@ -9,6 +9,7 @@
     "express": "3.4.8",
     "jade": "*",
     "passport": ">= 0.0.0",
-    "passport-facebook": ">= 0.0.0"
+    "passport-facebook": ">= 0.0.0",
+    "mysql": "*"
   }
 }
