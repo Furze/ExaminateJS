@@ -20,6 +20,7 @@ var connection = mysql.createConnection({
     host     : 'ep9gru174l.database.windows.net',
     user     : 'flamingo',
     password : 'IWishICouldRememberAllThis#69',
+		database:   'examinate_db',
     port: 1433
 });
 
@@ -91,6 +92,8 @@ app.get('/submit', ensureAuthenticated, function(req, res){
       console.log(rows);
       result= rows;
     });
+		var test = connection.query('SELECT * FROM *');
+		console.log(test);
    // console.log(result);    //SQL TO GET ALL COURSES
        //RESULT TO JSON
    // }
