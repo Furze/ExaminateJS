@@ -5,14 +5,26 @@
 
 var express = require('express');
 var routes = require('./routes');
+var url = require("url");
+
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var http = require('http');
 var path = require('path');
+var mysql      = require('mysql');
 
 
 var FACEBOOK_APP_ID = "427162887386428";
 var FACEBOOK_APP_SECRET = "2c58b6b44fe3b970e09e1b8e0deb5716";
+
+var sqldb = mysql.createConnection({
+    host     : 'ep9gru174l.database.windows.net',
+    user     : 'flamingo',
+    password : 'IWishICouldRememberAllThis#69',
+		database:   'examinate_db',
+    port: 1433
+});
+
 
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -49,8 +61,8 @@ if ('development' == app.get('env')) {
 passport.use(new FacebookStrategy({
         clientID: FACEBOOK_APP_ID,
         clientSecret: FACEBOOK_APP_SECRET,
-        callbackURL: "http://examinate.azurewebsites.net/auth/facebook/callback"
-        //callbackURL: "http://localhost:3000/auth/facebook/callback"
+        //callbackURL: "http://examinate.azurewebsites.net/auth/facebook/callback"
+        callbackURL: "http://localhost:3000/auth/facebook/callback"
 
     },
     function(accessToken, refreshToken, profile, done) {
@@ -74,13 +86,33 @@ app.get('/', function(req, res){
 });
 
 app.get('/submit', ensureAuthenticated, function(req, res){
-    res.render('submitIndex', { user: req.user, title: 'Examinate - Submit' });
+    /*var result = "";
+    //if(req.query.searchTerm){
+		console.log(1);
+    sqldb.query('SELECT * FROM *', function(err, rows) {
+	    console.log('2a');
+      if(err) {console.log('err:\n'+err);}// connected! (unless `err` is set)
+      console.log('2b');
+	    console.log("rows\n" + rows);
+
+      result= rows;
+    });
+	console.log(1);
+		var test = sqldb.query('SELECT * FROM *');
+		console.log("test "+test+ "\n result" + result);
+	console.log();
+	var uni = url.parse(req.url).query['u'];
+	if(uni){console.log(uni);}
+   // console.log(result);    //SQL TO GET ALL COURSES
+       //RESULT TO JSON
+   // }*/
+    res.render('submitIndex', { user: req.user, title: 'Examinate - Submit'/*, result: test*/});
 });
 app.get('/check', ensureAuthenticated, function(req, res){
-    res.render('checkIndex', { user: req.user, title: 'Examinate - Submit' });
+    res.render('checkIndex', { user: req.user, title: 'Examinate - Check' });
 });
 app.get('/modify', ensureAuthenticated, function(req, res){
-    res.render('modifyIndex', { user: req.user, title: 'Examinate - Submit' });
+    res.render('modifyIndex', { user: req.user, title: 'Examinate - modify' });
 });
 
 app.get('/logout', function(req, res){

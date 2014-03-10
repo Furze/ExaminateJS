@@ -3,15 +3,15 @@ html(lang="en")
   head
     meta(name='viewport', content='width=device-width, initial-scale=1')
     meta(name='author', content='Michael Wildman')
-
     link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
     link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css')
     link(rel='stylesheet', href='/stylesheets/main.css')
     link(rel='stylesheet', href='/stylesheets/home.css')
+    block fbmeta
     title= title
 
   body
-    div(class="navbar navbar-default navbar-fixed-top" role="navigation")
+    nav(class="navbar navbar-default navbar-fixed-top" role="navigation")
       div(class="container")
         div(class="navbar-header")
           button(class="navbar-toggle", type="button", data-toggle="collapse", data-target=".navbar-collapse")
