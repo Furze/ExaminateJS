@@ -91,10 +91,14 @@ app.get('/submit', ensureAuthenticated, function(req, res){
       console.log(rows);
       result= rows;
     });
-    console.log(result);    //SQL TO GET ALL COURSES
+   // console.log(result);    //SQL TO GET ALL COURSES
        //RESULT TO JSON
    // }
-    res.render('submitIndex', { user: req.user, title: 'Examinate - Submit', result: result });
+    res.render('submitIndex', { user: req.user, title: 'Examinate - Submit', result: connection.query('SELECT * FROM *', function(err, rows) {
+	    if(err) {return console.log(err);}// connected! (unless `err` is set)
+	    console.log(rows);
+	    return rows;
+    }) });
 });
 app.get('/check', ensureAuthenticated, function(req, res){
     res.render('checkIndex', { user: req.user, title: 'Examinate - Check' });
