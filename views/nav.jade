@@ -1,14 +1,18 @@
 extends layout
 block nav
-  ul.nav.navbar-nav
-    if !user
+  if !user
+    ul.nav.navbar-nav
       block homeNav
         li
           a(href="/") Home
       block aboutNav
         li
           a(href="about") About
-    else
+    a.navbar-right.btn.btn-default.navbar-btn(href="/auth/facebook")
+      i.fa.fa-facebook
+      |  | Sign in with Facebook
+  else
+    ul.nav.navbar-nav
       block homeNav
         li
           a(href="/home") Home
@@ -21,10 +25,8 @@ block nav
       block modifyNav
         li
           a(href="/modify") Modify
-      block logoutNav
-        li
-          a(href="logout") Logout
-  a.navbar-right(href="logout")
-    button.btn.btn-default.navbar-btn Logout
+    a.navbar-right.btn.btn-default.navbar-btn(href="logout")
+      i.fa.fa-facebook
+      |  | Log out
 
 block content

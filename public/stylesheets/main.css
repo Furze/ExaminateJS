@@ -16,6 +16,9 @@ body {
 .navbar-default .navbar-nav li a {
   color: #265073
 }
+.navbar-default .navbar-right {
+  color: #265073;
+}
 .navbar-default .navbar-nav li a:hover,
 .navbar-default .navbar-nav .active a,
 .navbar-default .navbar-nav .active a:hover {

@@ -1,4 +1,4 @@
-extends indexMenu
+extends nav
 
 block homeNav
   li.active
@@ -11,26 +11,12 @@ block content
          h1 Examinate
          h3  Practice exams and crowd sourced answers
          block message
-         a(href="/auth/facebook")
-           button(class="btn btn-default btn-lg") <i class="fa fa-facebook"></i> | Sign in with Facebook
+         a.btn.btn-default.btn-lg(href="/auth/facebook")
+           i.fa.fa-facebook
+           |  | Sign in with Facebook
     else
       div.minitron
         div.container
           h1 Welcome, #{user.displayName}
       div.container
-        div.row
-          div.col-lg-4
-            h2 Submit Answers
-            p Work through an exam and submit answers as you go
-            p
-              a.btn.btn-default(href="/submit", role="button") Submit Answer »
-          div.col-lg-4
-            h2 Check Answers
-            p Get the answers for an exam and discuss the results
-            p
-              a.btn.btn-default(href="/check", role="button") Check Answers »
-          div.col-lg-4
-            h2 Modify Answers
-            p Go back and look at or change your past answers
-            p
-              a.btn.btn-default(href="/modify", role="button") Modify Answers »
+        h1 Search for exams:
