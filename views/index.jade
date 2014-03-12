@@ -18,5 +18,21 @@ block content
       div.minitron
         div.container
           h1 Welcome, #{user.displayName}
-      div.container
-        h1 Search for exams:
+      div.container#main-search
+        div.row
+          div.col-lg-12
+            h1 Search for a course
+        div.row
+          div.col-lg-12
+            div.input-group
+              div.input-group-btn
+                button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown") Select a University
+                  span.caret
+                ul.dropdown-menu
+                  li
+                    a(href="#") UoA
+                  li
+                    a(href="#") Other uni..
+              input.form-control(type="input", placeholder="e.g. compsci 280")
+              div.input-group-btn
+                button.btn.btn-default(type="button") Go!
