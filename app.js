@@ -46,14 +46,9 @@ app.get('/modify', fb.ensureAuthenticated, routes.modify);
 
 //fb auth pages
 app.get('/auth/facebook', fb.passport.authenticate('facebook'));
-app.get('/auth/facebook/callback',  fb.passport.authenticate('facebook', { successRedirect: '/',
-        failureRedirect: '/login' }));
+app.get('/auth/facebook/callback',  fb.passport.authenticate('facebook', { successRedirect: '/',   failureRedirect: '/login' }));
 
-
-
-
-
-
+//UNCOMMENT BELLOW and COMMENT http. ONWARDS for sql
 /*db
 	.sequelize
 	.sync({ force: true })
