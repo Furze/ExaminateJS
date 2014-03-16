@@ -36,7 +36,7 @@ if ('development' == app.get('env')) {
 //pages without user logged in
 app.get('/', routes.index);
 app.get('/about', routes.about);
-app.get('/login', routes.login);
+app.get('/login', routes.loginError);
 app.get('/logout', routes.logout);
 
 //pages requiring fb login
