@@ -1,28 +1,36 @@
-
+//INDEX PAGE
 exports.index = function(req, res){
   res.render('index', { user: req.user, title: 'Examinate - Home' });
 };
 
+//submit page
 exports.submit = function(req, res){
-	res.render('submitIndex', { user: req.user, title: 'Examinate - Submit'});
+	res.render('submit', { user: req.user, title: 'Examinate - Submit'});
 };
 
+//check page
 exports.check = function(req, res){
-	res.render('checkIndex', { user: req.user, title: 'Examinate - Check' });
+    //TODO:  DB TESTING AREA
+	res.render('check', { user: req.user, title: 'Examinate - Check' });
 };
 
+//modify page
 exports.modify = function(req, res){
-	res.render('modifyIndex', { user: req.user, title: 'Examinate - modify' });
+	res.render('modify', { user: req.user, title: 'Examinate - modify' });
 };
 
+//logout
 exports.logout = function(req, res){
 	req.logout();
 	res.redirect('/');
 };
 
-exports.login = function(req, res){
-    res.render('indexLogin', { title: 'Examinate - Login' });
+//login error
+exports.loginError = function(req, res){
+    res.render('loginError', { title: 'Examinate - Login' });
 };
+
+//index about
 exports.about = function(req, res){
-    res.render('indexAbout', { title: 'Examinate - About' });
+    res.render('about', { title: 'Examinate - About' });
 };

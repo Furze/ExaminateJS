@@ -21,7 +21,7 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(express.cookieParser('your secret here')); //do we even cookie
+app.use(express.cookieParser('C4NTTOUCHTHIS')); //TODO: randomly generated string
 app.use(express.session());
 app.use(fb.passport.initialize());
 app.use(fb.passport.session());
