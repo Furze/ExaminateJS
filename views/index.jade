@@ -4,39 +4,65 @@ block homeNav
   li.active
     a(href="/") Home
 block content
-    if !user
-      div.jumbotron
-       div.container
-         img(src="images/darlek.png", alt="Examinate Logo", height="120", width="100")
-         h1 Examinate
-         h3  Practice exams and crowd sourced answers
-         block message
-         a.btn.btn-default.btn-lg(href="/auth/facebook")
-           i.fa.fa-facebook
-           |  | Sign in with Facebook
-    else
-      div.minitron
-        div.container
-          h1 Welcome, #{user.displayName}
-      div.container#main-search
-        div.row
-          div.col-lg-12
-            h1 Search for a course
-        div.row
-          div.col-lg-12
-            div.input-group
-              div.input-group-btn
-                button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown") Select a University
-                  span.caret
-                ul.dropdown-menu
-                  li
-                    a(href="#") UoA
-                  li
-                    a(href="#") Other uni..
-              input.form-control(type="input", placeholder="e.g. compsci 280")
-              div.input-group-btn
-                button.btn.btn-default(type="button") Go!
+  if !user
+    div.jumbotron
       div.container
+        img(src="images/darlek.png", alt="Examinate Logo", height="120", width="100")
+        h1 Examinate
+        h3  Practice exams and crowd sourced answers
+        block message
+        a.btn.btn-default.btn-lg(href="/auth/facebook")
+          i.fa.fa-facebook
+          |  | Sign in with Facebook
+  else
+    div.minitron
+      div.container
+        h1 Welcome, #{user.displayName}
+    div.container
+      div.row
+        div.col-lg-8
+          h2 Search for a course
+          div.minibreak
+          div.input-group
+            div.input-group-btn
+              button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown") Select a University
+                span.caret
+              ul.dropdown-menu
+                li
+                  a(href="#") UoA
+                li
+                  a(href="#") Other uni..
+            input.form-control(type="input", placeholder="e.g. compsci 280")
+            div.input-group-btn
+              button.btn.btn-default(type="button") Go!
+        div.col-lg-4
+          h2 Your courses
+          div.row
+            div.col-lg-12
+              a.btn.btn-default.btn-block.course-button(href="#")
+                h3 CompSci 101
+                p 3 exams (2 complete)
+          div.row
+            div.col-lg-12
+              a.btn.btn-default.btn-block.course-button(href="#")
+                h3 CompSci 210
+                p placeholder text
+          div.row
+            div.col-lg-12
+              a.btn.btn-default.btn-block.course-button(href="#")
+                h3 Maths 250
+                p placeholder text
+          div.row
+            div.col-lg-12
+              a.btn.btn-default.btn-block.course-button(href="#")
+                h3 Stats 108
+                p placeholder text
+
+
+
+
+
+//-      div.container
         div.row
           div.col-lg-12
             h1 Your Courses
