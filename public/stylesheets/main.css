@@ -56,8 +56,8 @@ body {
 }
 
 /* page content */
-.minibreak {
-  height: 10px
+#main-search {
+  margin-top: 20px;
 }
 .course-button {
   text-align: left;
