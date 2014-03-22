@@ -42,5 +42,5 @@ exports.about = function(req, res){
 
 //course landing page
 exports.courseLanding = function(req, res){
-  res.render('courseLanding', { title: "Examinate - CompSci 101"});
+  res.render('courseLanding', { user: req.user, title: "Examinate - CompSci 101"});
 };
