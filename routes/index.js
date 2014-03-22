@@ -39,3 +39,8 @@ exports.loginError = function(req, res){
 exports.about = function(req, res){
     res.render('about', { title: 'Examinate - About' });
 };
+
+//course landing page
+exports.courseLanding = function(req, res){
+  res.render('courseLanding', { title: "Examinate - CompSci 101"});
+};

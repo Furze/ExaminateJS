@@ -45,7 +45,7 @@ app.get('/check', fb.ensureAuthenticated, routes.check);
 app.get('/modify', fb.ensureAuthenticated, routes.modify);
 
 //TEMP
-app.get('/courselanding', fb.ensureAuthenticated, routes.modify)
+app.get('/courselanding', fb.ensureAuthenticated, routes.courseLanding)
 //fb auth pages
 app.get('/auth/facebook', fb.passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',  fb.passport.authenticate('facebook', { successRedirect: '/',   failureRedirect: '/login' }));
