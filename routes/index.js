@@ -18,6 +18,11 @@ exports.check = function(req, res){
 exports.modify = function(req, res){
 	res.render('modify', { user: req.user, title: 'Examinate - modify' });
 };
+//modify page
+exports.landign = function(req, res){
+    res.render('courseLanding', { user: req.user, title: 'Examinate - CompSci 101' });
+};
+
 
 //logout
 exports.logout = function(req, res){
