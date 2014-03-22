@@ -4,51 +4,27 @@
  **/
 
 var express = require('express');
-var routes = require('./routes');
-var url = require("url");
-
-var passport = require('passport');
-var FacebookStrategy = require('passport-facebook').Strategy;
-var http = require('http');
-var path = require('path');
-var mysql      = require('mysql');
-
-
-var FACEBOOK_APP_ID = "427162887386428";
-var FACEBOOK_APP_SECRET = "2c58b6b44fe3b970e09e1b8e0deb5716";
-
-var sqldb = mysql.createConnection({
-    host     : 'ep9gru174l.database.windows.net',
-    user     : 'flamingo',
-    password : 'IWishICouldRememberAllThis#69',
-		database:   'examinate_db',
-    port: 1433
-});
-
-
-passport.serializeUser(function(user, done) {
-    done(null, user);
-});
-
-passport.deserializeUser(function(obj, done) {
-    done(null, obj);
-});
-
+var routes  = require('./routes');
+var url     = require("url");
+var fb      = require('./fb');
+var http    = require('http');
+var path    = require('path');
+var db      = require('./models')
 var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.use(express.favicon());
+app.use(express.favicon()); //TODO: our own favicon
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(express.cookieParser('your secret here'));
+app.use(express.cookieParser('C4NTTOUCHTHIS')); //TODO: randomly generated string
 app.use(express.session());
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(fb.passport.initialize());
+app.use(fb.passport.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -57,77 +33,38 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-
-passport.use(new FacebookStrategy({
-        clientID: FACEBOOK_APP_ID,
-        clientSecret: FACEBOOK_APP_SECRET,
-        callbackURL: "http://examinate.azurewebsites.net/auth/facebook/callback"
-        //callbackURL: "http://localhost:3000/auth/facebook/callback"
-
-    },
-    function(accessToken, refreshToken, profile, done) {
-        // asynchronous verification, for effect...
-        process.nextTick(function () {
-            return done(null, profile);
-        });
-    }
-));
-
-
-//app.get('/', routes.index);
+//pages without user logged in
+app.get('/', routes.index);
 app.get('/about', routes.about);
-app.get('/login', routes.login);
-app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback',  passport.authenticate('facebook', { successRedirect: '/',
-        failureRedirect: '/login' }));
+app.get('/login', routes.loginError);
+app.get('/logout', routes.logout);
 
-app.get('/', function(req, res){
-    res.render('index', { user: req.user, title: 'Examinate - Home' });
-});
+//pages requiring fb login
+app.get('/submit', fb.ensureAuthenticated, routes.submit);
+app.get('/check', fb.ensureAuthenticated, routes.check);
+app.get('/modify', fb.ensureAuthenticated, routes.modify);
 
-app.get('/submit', ensureAuthenticated, function(req, res){
-    /*var result = "";
-    //if(req.query.searchTerm){
-		console.log(1);
-    sqldb.query('SELECT * FROM *', function(err, rows) {
-	    console.log('2a');
-      if(err) {console.log('err:\n'+err);}// connected! (unless `err` is set)
-      console.log('2b');
-	    console.log("rows\n" + rows);
+//TEMP
+app.get('/courselanding', fb.ensureAuthenticated, routes.courseLanding)
+//fb auth pages
+app.get('/auth/facebook', fb.passport.authenticate('facebook'));
+app.get('/auth/facebook/callback',  fb.passport.authenticate('facebook', { successRedirect: '/',   failureRedirect: '/login' }));
 
-      result= rows;
-    });
-	console.log(1);
-		var test = sqldb.query('SELECT * FROM *');
-		console.log("test "+test+ "\n result" + result);
-	console.log();
-	var uni = url.parse(req.url).query['u'];
-	if(uni){console.log(uni);}
-   // console.log(result);    //SQL TO GET ALL COURSES
-       //RESULT TO JSON
-   // }*/
-    res.render('submitIndex', { user: req.user, title: 'Examinate - Submit'/*, result: test*/});
-});
-app.get('/check', ensureAuthenticated, function(req, res){
-    res.render('checkIndex', { user: req.user, title: 'Examinate - Check' });
-});
-app.get('/modify', ensureAuthenticated, function(req, res){
-    res.render('modifyIndex', { user: req.user, title: 'Examinate - modify' });
-});
-
-app.get('/logout', function(req, res){
-    req.logout();
-    res.redirect('/');
-});
-
+//UNCOMMENT BELLOW and COMMENT http. ONWARDS for sql NOT NEEDED FOR STATIC
+/*db
+	.sequelize
+	.sync({ force: true })
+	.complete(function(err) {
+		if (err) {
+			console.log(err);
+			throw err
+		} else {
+			http.createServer(app).listen(app.get('port'), function(){
+				console.log('Express server listening on port ' + app.get('port'))
+			})
+		}
+	})
+*/
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
-
-function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    res.redirect('/login')
-}
-
-
-
+	console.log('Express server listening on port ' + app.get('port'));
+}); //SAVING INCASE sequelize is shit

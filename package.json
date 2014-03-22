@@ -10,6 +10,8 @@
     "jade": "*",
     "passport": ">= 0.0.0",
     "passport-facebook": ">= 0.0.0",
-    "mysql": "*"
+    "mysql": "^2.1.0",
+    "sequelize": "^1.7.0",
+    "lodash": "^2.4.1"
   }
 }

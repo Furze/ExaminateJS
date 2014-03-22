@@ -1,9 +1,20 @@
+/* document wide */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  padding-top: 50px;
+  margin-bottom: 30px;
+}
+
+/* navbar */
 .navbar-default {
   background-color: #fff;
   border-color: #265073;
 }
 .navbar-default .navbar-brand {
-  color: #265073;  
+  color: #265073;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
@@ -11,24 +22,23 @@
   background-color: transparent;
 }
 .navbar-default .navbar-nav li a {
-  color: #265073  
+  color: #265073
+}
+.navbar-default .navbar-right {
+  color: #265073;
 }
 .navbar-default .navbar-nav li a:hover,
-.navbar-default .navbar-nav .active a, 
+.navbar-default .navbar-nav .active a,
 .navbar-default .navbar-nav .active a:hover {
   background-color: #f9f9f9;
 }
+
+/* headers */
 .jumbotron {
   background-color: #265073;
   color: #fff;
   text-align: center;
-  margin: 0
-}
-.minitron {
-    background-color: #265073;
-    color: #fff;
-    text-align: left;
-    margin: 0
+  margin: 0;
 }
 .jumbotron h3 {
   padding: 25px 25px 40px 25px;
@@ -36,22 +46,39 @@
 .jumbotron .btn {
   color: #265073;
 }
-.break{
-    padding: 80px;
+.minitron {
+  background-color: #265073;
+  color: #fff;
+  text-align: left;
+  margin: 0;
+  padding-bottom: 15px;
+  padding-top: 10px;
 }
-.smallbreak{
-    padding: 20px;
+
+/* page content */
+#main-search {
+  margin-top: 20px;
 }
-.col-sm-3{
-    margin-right: 20px;
-    margin-left: 20px;
-    margin-bottom: 20px;
+.course-button {
+  text-align: left;
+  padding: 15px;
+  margin: 10px 0;
 }
-.center{
-    margin-left: auto ;
-    margin-right: auto ;
-    text-align: center;
+.fb-comments {
+  margin-top: 30px;
 }
-.container-top {
-    margin-top: 60px;
+
+
+/* footer */
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  background-color: #f5f5f5;
 }
+#footer p {
+  padding-top: 5px;
+}
+
+
