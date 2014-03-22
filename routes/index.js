@@ -5,14 +5,13 @@ exports.index = function(req, res){
 
 //submit page
 exports.submit = function(req, res){
-	res.render('submit', { user: req.user, title: 'Examinate - Submit'});
+	res.render('submit', { user: req.user, title: 'Examinate - Submit', qnum: req.query.q});
 };
 
 //check page
 exports.check = function(req, res){
     //TODO:  DB TESTING AREA
-  var url = req.url;
-  res.render('check', { user: req.user, title: 'Examinate - Check' });
+  res.render('check', { user: req.user, title: 'Examinate - Check', url: req.url });
 };
 
 //modify page
