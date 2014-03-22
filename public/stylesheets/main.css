@@ -64,7 +64,9 @@ body {
   padding: 15px;
   margin: 10px 0;
 }
-
+.fb-comments {
+  margin-top: 30px;
+}
 
 
 /* footer */

@@ -11,7 +11,8 @@ exports.submit = function(req, res){
 //check page
 exports.check = function(req, res){
     //TODO:  DB TESTING AREA
-	res.render('check', { user: req.user, title: 'Examinate - Check' });
+  var url = req.url;
+  res.render('check', { user: req.user, title: 'Examinate - Check' });
 };
 
 //modify page
