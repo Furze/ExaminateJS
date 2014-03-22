@@ -5,5 +5,40 @@ block submitNav
     a(href="/submit") Submit
 
 block content
-    if result
-        h3  #{result}
+  div.minitron
+    div.container
+      h3 CompSci 101 Exam Semester 1 2013
+  div.container
+    div.row(style="padding-top: 30px")
+      div.col-lg-8
+        div.row
+          div.col-lg-12
+            h3 Question #{qnum}
+        div.row
+          div.col-lg-12
+            a.btn.btn-default.btn-block.course-button(href="/submit?c=compsci101&e=2012s1&q=11")
+              h4 A
+        div.row
+          div.col-lg-12
+            a.btn.btn-default.btn-block.course-button(href="#")
+              h4 B
+        div.row
+          div.col-lg-12
+            a.btn.btn-default.btn-block.course-button(href="#")
+              h4 C
+        div.row
+          div.col-lg-12
+            a.btn.btn-default.btn-block.course-button(href="#")
+              h4 D
+        div.row
+          div.col-lg-12
+            a.btn.btn-default.btn-block.course-button(href="#")
+              h4 E
+        div.row
+          div.col-lg-3
+            a.btn.btn-warning.btn-block.course-button(href="#")
+              h4 Back
+          div.col-lg-6
+          div.col-lg-3
+            a.btn.btn-primary.btn-block.course-button(href="#")
+              h4 Skip
