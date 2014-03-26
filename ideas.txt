@@ -1,2 +1,3 @@
 *Liamgithub: i was thinking of maybe an option when they start at exam that they can choose whether they want to view the answers afta each question or at the end of the exam 
 
+Pang: have it so that you only view 6 answers at once

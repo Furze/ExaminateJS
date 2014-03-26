@@ -5,7 +5,9 @@ exports.index = function(req, res){
 
 //submit page
 exports.submit = function(req, res){
-	res.render('submit', { user: req.user, title: 'Examinate - Submit', qnum: req.query.q, qnext: (req.query.q++), qprev: (req.query.q-1)});
+    var next = +req.query.q+1;
+    var prev = req.query.q-1;
+	res.render('submit', { user: req.user, title: 'Examinate - Submit', qnum: req.query.q, qnext: next, qprev: prev});
 };
 
 //check page
