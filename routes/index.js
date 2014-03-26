@@ -5,15 +5,31 @@ exports.index = function(req, res){
 
 //submit page
 exports.submit = function(req, res){
-    var next = +req.query.q+1;
-    var prev = req.query.q-1;
-	res.render('submit', { user: req.user, title: 'Examinate - Submit', qnum: req.query.q, qnext: next, qprev: prev});
+    var nextQ = req.query.q;
+    if(req.query.a){ //HANDLE ANSWERING Q
+        var answer = req.query.a;
+        nextQ = +req.query.q+1;
+    } else { //is back
+        nextQ = req.query.q-1;
+    }
+    res.redirect('/question?c=' + req.query.c +'&e='+ req.query.e +'&q=' + nextQ);
 };
 
+
+exports.question = function(req, res){
+    var cAndE = 'c=' + req.query.c +'&e='+ req.query.e;
+    var submitURL = '/submit?' + cAndE + '&q=' + req.query.q;
+    var prevURL = '/question?' + cAndE +  '&q=' + (req.query.q-1);
+    res.render('submit', { user: req.user, title: 'Examinate - Answer Questions', linkURL: submitURL, prevURL: prevURL, qnum: req.query.q});
+};
 //check page
 exports.check = function(req, res){
-    //TODO:  DB TESTING AREA
   res.render('check', { user: req.user, title: 'Examinate - Check', url: req.url });
+};
+
+//add
+exports.add = function(req, res){
+    res.render('check', { user: req.user, title: 'Examinate - Check', url: req.url });
 };
 
 //modify page
