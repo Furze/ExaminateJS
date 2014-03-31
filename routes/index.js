@@ -8,7 +8,12 @@ exports.submit = function(req, res){
     var nextQ = req.query.q;
     if(req.query.a){ //HANDLE ANSWERING Q
         var answer = req.query.a;
-        nextQ = +req.query.q+1;
+        if(answer ==='a' || answer === 'b' || answer === 'c' || answer === 'd' || answer ==='e' || answer === 'skip'){
+            nextQ = +req.query.q+1;
+        } else {
+            res.redirect('/question?c=' + req.query.c +'&e='+ req.query.e +'&q=' + nextQ + '&error=true');
+            //incorrect answer
+        }
     } else { //is back
         nextQ = req.query.q-1;
     }
@@ -20,7 +25,7 @@ exports.question = function(req, res){
     var cAndE = 'c=' + req.query.c +'&e='+ req.query.e;
     var submitURL = '/submit?' + cAndE + '&q=' + req.query.q;
     var prevURL = '/question?' + cAndE +  '&q=' + (req.query.q-1);
-    res.render('submit', { user: req.user, title: 'Examinate - Answer Questions', linkURL: submitURL, prevURL: prevURL, qnum: req.query.q});
+    res.render('submit', { user: req.user, title: 'Examinate - Answer Questions', linkURL: submitURL, prevURL: prevURL, qnum: req.query.q, errorMessage: req.query.error});
 };
 //check page
 exports.check = function(req, res){

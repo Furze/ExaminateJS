@@ -14,6 +14,9 @@ block content
         div.row
           div.col-lg-12
             h3 Question #{qnum}
+            if errorMessage
+                h4(style="color: #A50909") There was an error, please try again..
+
         div.row
           div.col-lg-12
             a.btn.btn-default.btn-block.course-button(href=linkURL+"&a=a")

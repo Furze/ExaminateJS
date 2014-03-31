@@ -52,21 +52,6 @@ app.get('/courselanding', fb.ensureAuthenticated, routes.courseLanding)
 app.get('/auth/facebook', fb.passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',  fb.passport.authenticate('facebook', { successRedirect: '/',   failureRedirect: '/login' }));
 
-//UNCOMMENT BELLOW and COMMENT http. ONWARDS for sql NOT NEEDED FOR STATIC
-/*db
-	.sequelize
-	.sync({ force: true })
-	.complete(function(err) {
-		if (err) {
-			console.log(err);
-			throw err
-		} else {
-			http.createServer(app).listen(app.get('port'), function(){
-				console.log('Express server listening on port ' + app.get('port'))
-			})
-		}
-	})
-*/
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
-}); //SAVING INCASE sequelize is shit
+});
