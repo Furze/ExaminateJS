@@ -1,24 +1,26 @@
 //INDEX PAGE
 var http = require('http');
 
-var options = {
-    host: 'examinatedb.azurewebsites.net',
-    path: '/getcourses'
-};
-
+var onlineServer = 'examinatedb.azurewebsites.net';
+var testingServer = 'localhost'; //LOCAL TESTING
+var server = testingServer;//onlineServer;
+var poort = 3001;//80; //3001
 
 exports.index = function(req, res){
 
-  if(req.user !== null){
-      //TODO QUERY DATABASE AND GET USERS COURSES HERE
-      var userCourses = "test";
+  if(req.user){
+      var options = {
+          host: server,
+          port: poort, //ONLY FOR LOCAL TESTING*/
+          path: '/getcourses?uID=' + req.user.id
+      };
+
       var getCourses = http.get(options, function(resp) {
           var bodyChunks = [];
           resp.on('data', function(chunk) {
              bodyChunks.push(chunk);
           }).on('end', function() {
                   var body = Buffer.concat(bodyChunks);
-                  console.log(body);
                   res.render('index', { user: req.user, title: 'Examinate - Home', courses: JSON.parse(body)});
               })
       });
@@ -34,7 +36,20 @@ exports.submit = function(req, res){
         var answer = req.query.a;
         if(answer ==='a' || answer === 'b' || answer === 'c' || answer === 'd' || answer ==='e' || answer === 'skip'){
             nextQ = +req.query.q+1;
-            //TODO: SUBMIT TO QUEUE HERE
+            var options = {
+                host: server,
+                 port: poort,
+                path: '/submitanswer?uID=' + req.user.id + '&c='+req.query.c + '&e=' + req.query.e + '&q=' + req.query.q + '&a=' + req.query.a
+            };
+
+            var submitAnswer = http.get(options, function(resp) {
+                var bodyChunks = [];
+                resp.on('data', function(chunk) {
+                    bodyChunks.push(chunk);
+                }).on('end', function() {
+                        var body = Buffer.concat(bodyChunks);
+                 })
+            });
         } else {
             //incorrect answer
             res.redirect('/question?c=' + req.query.c +'&e='+ req.query.e +'&q=' + nextQ + '&error=true'); //TODO isn't showing ):
