@@ -1,6 +1,12 @@
 //INDEX PAGE
 exports.index = function(req, res){
-  res.render('index', { user: req.user, title: 'Examinate - Home' });
+  if(req.user !== null){
+      //TODO QUERY DATABASE AND GET USERS COURSES HERE
+      var userCourses = "[{\"name\":\"compsci101\",\"exams\":3,\"complete\":1},{\"name\":\"compsci111\",\"exams\":3,\"complete\":1},{\"name\":\"compsci111g\",\"exams\":3,\"complete\":1}]";
+      res.render('index', { user: req.user, title: 'Examinate - Home', courses: JSON.parse(userCourses)});
+      return;
+  }
+ res.render('index', { user: req.user, title: 'Examinate - Home'});
 };
 
 //submit page
@@ -10,9 +16,10 @@ exports.submit = function(req, res){
         var answer = req.query.a;
         if(answer ==='a' || answer === 'b' || answer === 'c' || answer === 'd' || answer ==='e' || answer === 'skip'){
             nextQ = +req.query.q+1;
+            //TODO: SUBMIT TO QUEUE HERE
         } else {
-            res.redirect('/question?c=' + req.query.c +'&e='+ req.query.e +'&q=' + nextQ + '&error=true');
             //incorrect answer
+            res.redirect('/question?c=' + req.query.c +'&e='+ req.query.e +'&q=' + nextQ + '&error=true'); //TODO isn't showing ):
         }
     } else { //is back
         nextQ = req.query.q-1;
@@ -41,11 +48,6 @@ exports.add = function(req, res){
 exports.modify = function(req, res){
 	res.render('modify', { user: req.user, title: 'Examinate - modify' });
 };
-//modify page
-exports.landign = function(req, res){
-    res.render('courseLanding', { user: req.user, title: 'Examinate - CompSci 101' });
-};
-
 
 //logout
 exports.logout = function(req, res){

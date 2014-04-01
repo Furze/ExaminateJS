@@ -36,52 +36,10 @@ block content
               button.btn.btn-default(type="button") Go!
         div.col-lg-4
           h2 Your courses
-          div.row
-            div.col-lg-12
-              a.btn.btn-default.btn-block.course-button(href="/courseLanding?c=compsci101")
-                h3 CompSci 101
-                p 3 exams (2 complete)
-          div.row
-            div.col-lg-12
-              a.btn.btn-default.btn-block.course-button(href="#")
-                h3 CompSci 210
-                p placeholder text
-          div.row
-            div.col-lg-12
-              a.btn.btn-default.btn-block.course-button(href="#")
-                h3 Maths 250
-                p placeholder text
-          div.row
-            div.col-lg-12
-              a.btn.btn-default.btn-block.course-button(href="#")
-                h3 Stats 108
-                p placeholder text
-
-
-
-
-
-//-      div.container
-        div.row
-          div.col-lg-12
-            h1 Your Courses
-          div.courses
-            div.col-lg-2.course-box
-              center
-                h3 CompSci 101
-                p icons
-            div.col-lg-1
-            div.col-lg-2.course-box
-              center
-                h3 CompSci 105
-                p icons
-            div.col-lg-1
-            div.col-lg-2.course-box
-              center
-                h3 CompSci 107
-                p icons
-            div.col-lg-1
-            div.col-lg-2.course-box
-              center
-                h3 CompSci 111
-                p icons
+          if courses
+            for course in courses
+                div.row
+                  div.col-lg-12
+                    a.btn.btn-default.btn-block.course-button(href="/courseLanding?c="+ course.name)
+                      h3 #{course.name}
+                      p #{course.exams} exams (#{course.complete} complete)

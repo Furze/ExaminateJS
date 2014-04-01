@@ -9,7 +9,6 @@ var url     = require("url");
 var fb      = require('./fb');
 var http    = require('http');
 var path    = require('path');
-var db      = require('./models')
 var app = express();
 
 // all environments
