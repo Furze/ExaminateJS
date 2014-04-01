@@ -1,9 +1,27 @@
 //INDEX PAGE
+var http = require('http');
+
+var options = {
+    host: 'examinatedb.azurewebsites.net',
+    path: '/getcourses'
+};
+
+
 exports.index = function(req, res){
+
   if(req.user !== null){
       //TODO QUERY DATABASE AND GET USERS COURSES HERE
-      var userCourses = "[{\"name\":\"compsci101\",\"exams\":3,\"complete\":1},{\"name\":\"compsci111\",\"exams\":3,\"complete\":1},{\"name\":\"compsci111g\",\"exams\":3,\"complete\":1}]";
-      res.render('index', { user: req.user, title: 'Examinate - Home', courses: JSON.parse(userCourses)});
+      var userCourses = "test";
+      var getCourses = http.get(options, function(resp) {
+          var bodyChunks = [];
+          resp.on('data', function(chunk) {
+             bodyChunks.push(chunk);
+          }).on('end', function() {
+                  var body = Buffer.concat(bodyChunks);
+                  console.log(body);
+                  res.render('index', { user: req.user, title: 'Examinate - Home', courses: JSON.parse(body)});
+              })
+      });
       return;
   }
  res.render('index', { user: req.user, title: 'Examinate - Home'});
