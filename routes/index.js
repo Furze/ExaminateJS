@@ -3,8 +3,8 @@ var http = require('http');
 
 var onlineServer = 'examinatedb.azurewebsites.net';
 var testingServer = 'localhost'; //LOCAL TESTING
-var server = testingServer;//onlineServer;
-var poort = 3001;//80; //3001
+var server = onlineServer;//onlineServer;
+var poort = 80; //3001
 
 exports.index = function(req, res){
 
@@ -100,5 +100,26 @@ exports.about = function(req, res){
 
 //course landing page
 exports.courseLanding = function(req, res){
-  res.render('courseLanding', { user: req.user, title: "Examinate - CompSci 101"});
+    if(req.user && req.query.c){
+        var course = req.query.c;
+        var options = {
+            host: server,
+            port: poort, //ONLY FOR LOCAL TESTING*/
+            path: '/getexams?uID=' + req.user.id + '&c=' + course
+        };
+
+        var getExams = http.get(options, function(resp) {
+            var bodyChunks = [];
+            resp.on('data', function(chunk) {
+                bodyChunks.push(chunk);
+            }).on('end', function() {
+                    var body = Buffer.concat(bodyChunks);
+                    //TODO: change courseLanding.jade for dynamic loading
+                    res.render('courseLanding', { user: req.user, title: 'Examinate - ' + course, exams: JSON.parse(body)});
+                })
+        });
+        return;
+    }
+ //TODO: error page with error message  ?
+ // res.render('courseLanding', { user: req.user, title: "Examinate - " + course});
 };
