@@ -115,7 +115,7 @@ exports.courseLanding = function(req, res){
             }).on('end', function() {
                     var body = Buffer.concat(bodyChunks);
                     //TODO: change courseLanding.jade for dynamic loading
-                    res.render('courseLanding', { user: req.user, title: 'Examinate - ' + course, exams: JSON.parse(body)});
+                    res.render('courseLanding', { user: req.user, title: 'Examinate - ' + course, exams: JSON.parse(body), course: course});
                 })
         });
         return;
