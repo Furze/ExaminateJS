@@ -6,9 +6,8 @@ block checkNav
 block content
   div.minitron
     div.container
-      h4 Check - CompSci 101 Exam Semester 1 2012
-  script window.fbAsyncInit = function() {FB.init({appId      : '{427162887386428}', status     : true, xfbml      : true });};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));
-
+      h4 Check - #{course} #{exam}
+    script window.fbAsyncInit = function() {FB.init({appId      : '{427162887386428}', status     : true, xfbml      : true });};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));
   div.container
     div.row
       div.col-lg-6
@@ -21,172 +20,20 @@ block content
                 strong Your answer
               td
                 strong People with same answer
-            tr
-              td 1
-              td A
-              td
-                div.progress
-                  div.progress-bar(style="width: 80%")
-            tr
-              td 2
-              td C
-              td
-                div.progress
-                  div.progress-bar.progress-bar-danger(style="width: 5%")
-            tr
-              td 3
-              td A
-              td
-                div.progress
-                  div.progress-bar.progress-bar-success(style="width: 100%")
-            tr
-              td 4
-              td B
-              td
-                div.progress
-                  div.progress-bar(style="width: 80%")
-            tr
-              td 5
-              td E
-              td
-                div.progress
-                  div.progress-bar.progress-bar-warning(style="width: 50%")
-            tr
-              td 6
-              td B
-              td
-                div.progress
-                  div.progress-bar(style="width: 60%")
-            tr
-              td 7
-              td C
-              td
-                div.progress
-                  div.progress-bar(style="width: 90%")
-            tr
-              td 8
-              td A
-              td
-                div.progress
-                  div.progress-bar(style="width: 80%")
-            tr
-              td 9
-              td C
-              td
-                div.progress
-                  div.progress-bar.progress-bar-danger(style="width: 5%")
-            tr
-              td 10
-              td A
-              td
-                div.progress
-                  div.progress-bar.progress-bar-success(style="width: 100%")
-            tr
-              td 11
-              td B
-              td
-                div.progress
-                  div.progress-bar(style="width: 80%")
-            tr
-              td 12
-              td E
-              td
-                div.progress
-                  div.progress-bar.progress-bar-warning(style="width: 50%")
-            tr
-              td 13
-              td B
-              td
-                div.progress
-                  div.progress-bar(style="width: 60%")
-            tr
-              td 14
-              td C
-              td
-                div.progress
-                  div.progress-bar(style="width: 90%")
-            tr
-              td 15
-              td A
-              td
-                div.progress
-                  div.progress-bar(style="width: 80%")
-            tr
-              td 16
-              td C
-              td
-                div.progress
-                  div.progress-bar.progress-bar-danger(style="width: 5%")
-            tr
-              td 17
-              td A
-              td
-                div.progress
-                  div.progress-bar.progress-bar-success(style="width: 100%")
-            tr
-              td 18
-              td B
-              td
-                div.progress
-                  div.progress-bar(style="width: 80%")
-            tr
-              td 19
-              td E
-              td
-                div.progress
-                  div.progress-bar.progress-bar-warning(style="width: 50%")
-            tr
-              td 20
-              td B
-              td
-                div.progress
-                  div.progress-bar(style="width: 60%")
-            tr
-              td 21
-              td C
-              td
-                div.progress
-                  div.progress-bar(style="width: 90%")
-            tr
-              td 22
-              td A
-              td
-                div.progress
-                  div.progress-bar(style="width: 80%")
-            tr
-              td 23
-              td C
-              td
-                div.progress
-                  div.progress-bar.progress-bar-danger(style="width: 5%")
-            tr
-              td 24
-              td A
-              td
-                div.progress
-                  div.progress-bar.progress-bar-success(style="width: 100%")
-            tr
-              td 25
-              td B
-              td
-                div.progress
-                  div.progress-bar(style="width: 80%")
-            tr
-              td 26
-              td E
-              td
-                div.progress
-                  div.progress-bar.progress-bar-warning(style="width: 50%")
-            tr
-              td 27
-              td B
-              td
-                div.progress
-                  div.progress-bar(style="width: 60%")
-            tr
-              td 28
-              td C
-              td
-                div.progress
-                  div.progress-bar(style="width: 90%")
+            if answers
+              for answer in answers
+                tr
+                  td #{answer.question}
+                  td #{answer.answer}
+                  td
+                    div.progress
+                      - var percentage = ((answer.numSame/answer.totalAnswered)*100)
+                        if  percentage<=10
+                          div.progress-bar.progress-bar-danger(style="width: "+percentage+"%")
+                        else if  percentage<=50
+                          div.progress-bar.progress-bar-warning(style="width: "+percentage+"%")
+                        else if  percentage>=85
+                          div.progress-bar.progress-bar-success(style="width: "+percentage+"%")
+                        else
+                          div.progress-bar.progress-bar(style="width: "+percentage+"%")
       div.fb-comments.col-lg-6(data-href="http://examinate.azurewebsites.net"+url, data-numposts="15", data-colorscheme="light", width="550")

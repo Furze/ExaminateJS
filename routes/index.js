@@ -69,7 +69,30 @@ exports.question = function(req, res){
 };
 //check page
 exports.check = function(req, res){
-  res.render('check', { user: req.user, title: 'Examinate - Check', url: req.url });
+    if(req.user && req.query.c){
+        var course = req.query.c;
+        var user = req.user.id;
+        var exam = req.query.e;
+        var options = {
+            host: server,
+            port: poort, //ONLY FOR LOCAL TESTING*/
+            path: '/getanswers?uID=' + user + '&c=' + course + '&e=' + exam
+        };
+
+        var getExams = http.get(options, function(resp) {
+            var bodyChunks = [];
+            resp.on('data', function(chunk) {
+                bodyChunks.push(chunk);
+            }).on('end', function() {
+                    var body = Buffer.concat(bodyChunks);
+                    //TODO: change check.jade for dynamic loading
+                    res.render('check', { user: req.user, title: 'Examinate - ' + course, answers: JSON.parse(body), course: course, exam: exam, url: req.url});
+                })
+        });
+        return;
+    }
+    //TODO: error page with error message  ?
+ // res.render('check', { user: req.user, title: 'Examinate - Check', url: req.url });
 };
 
 //add
@@ -114,7 +137,6 @@ exports.courseLanding = function(req, res){
                 bodyChunks.push(chunk);
             }).on('end', function() {
                     var body = Buffer.concat(bodyChunks);
-                    //TODO: change courseLanding.jade for dynamic loading
                     res.render('courseLanding', { user: req.user, title: 'Examinate - ' + course, exams: JSON.parse(body), course: course});
                 })
         });
