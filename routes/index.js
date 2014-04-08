@@ -91,7 +91,7 @@ exports.check = function(req, res){
         });
         return;
     }
-    //TODO: error page with error message  ?
+    //TODO: error page with error message
  // res.render('check', { user: req.user, title: 'Examinate - Check', url: req.url });
 };
 
