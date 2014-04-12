@@ -1,10 +1,10 @@
 //INDEX PAGE
 var http = require('http');
 
-var onlineServer = 'examinatedb.azurewebsites.net';
+var onlineServer = 'db.examinate.co.nz';
 var testingServer = 'localhost'; //LOCAL TESTING
-var server = onlineServer;//onlineServer;
-var poort = 80; //3001
+var server = onlineServer;//testingServer;
+var poort = 80;//3001
 
 exports.index = function(req, res){
 
