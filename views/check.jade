@@ -28,7 +28,7 @@ block content
                   td
                     div.progress
                       - var percentage = ((answer.numSame/answer.totalAnswered)*100)
-                        if  percentage<=10
+                        if  percentage<=20
                           div.progress-bar.progress-bar-danger(style="width: "+percentage+"%")
                         else if  percentage<=50
                           div.progress-bar.progress-bar-warning(style="width: "+percentage+"%")
