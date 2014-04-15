@@ -3,8 +3,8 @@ var http = require('http');
 
 var onlineServer = 'examinatedb.azurewebsites.net';
 var testingServer = 'localhost'; //LOCAL TESTING
-var server = onlineServer;//onlineServer;
-var poort = 80; //3001
+var server = onlineServer;
+var poort = 80;
 
 exports.index = function(req, res){
 
@@ -52,19 +52,19 @@ exports.submit = function(req, res){
             });
         } else {
             //incorrect answer
-            res.redirect('/question?c=' + req.query.c +'&e='+ req.query.e +'&q=' + nextQ + '&error=true'); //TODO isn't showing ):
+            res.redirect('/answer?c=' + req.query.c +'&e='+ req.query.e +'&q=' + nextQ + '&error=true'); //TODO isn't showing ):
         }
     } else { //is back
         nextQ = req.query.q-1;
     }
-    res.redirect('/question?c=' + req.query.c +'&e='+ req.query.e +'&q=' + nextQ);
+    res.redirect('/answer?c=' + req.query.c +'&e='+ req.query.e +'&q=' + nextQ);
 };
 
 
-exports.question = function(req, res){
+exports.answer = function(req, res){
     var cAndE = 'c=' + req.query.c +'&e='+ req.query.e;
     var submitURL = '/submit?' + cAndE + '&q=' + req.query.q;
-    var prevURL = '/question?' + cAndE +  '&q=' + (req.query.q-1);
+    var prevURL = '/answer?' + cAndE +  '&q=' + (req.query.q-1);
     res.render('submit', { user: req.user, title: 'Examinate - Answer Questions', linkURL: submitURL, prevURL: prevURL, qnum: req.query.q, errorMessage: req.query.error});
 };
 //check page
@@ -144,4 +144,28 @@ exports.courseLanding = function(req, res){
     }
  //TODO: error page with error message  ?
  // res.render('courseLanding', { user: req.user, title: "Examinate - " + course});
+};
+exports.question = function(req, res){
+  if(!req.user || !req.query.c || !req.query.e || !req.query.q  ){
+      return null;
+  }
+  var course = req.query.c;
+  var exam = req.query.e;
+  var question = req.query.q;
+    var options = {
+        host: server,
+        port: poort,
+        path: '/getquestion?uID=' + req.user.id + '&c=' + course + '&=e' + exam + '&q=' + question
+    };
+    var getQuestion = http.get(options, function(resp) {
+        var bodyChunks = [];
+        resp.on('data', function(chunk) {
+            bodyChunks.push(chunk);
+        }).on('end', function() {
+                var body = Buffer.concat(bodyChunks);
+                res.render('question', { user: req.user, title: 'Examinate - ' + course + ' - ' + exam + ' - ' + question, json: JSON.parse(body), course: course, exam: exam, url: req.url});
+            })
+    });
+    return;
+
 };
