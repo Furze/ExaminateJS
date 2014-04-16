@@ -1,0 +1,49 @@
+// Created by troy on 27/02/14.
+extends fbcomments
+block checkNav
+    li.active
+        a(href="/#") Check
+block content
+    div.minitron
+        div.container
+            h4 #{json.course.concat(' '.concat(json.exam))}
+            h4 Question #{json.question}
+        script window.fbAsyncInit = function() {FB.init({appId      : '{427162887386428}', status     : true, xfbml      : true });};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));
+    div.container
+        div.row
+            div.col-lg-6
+                br
+                h4  #{'You answered: '+json.yanswer}
+                div.row(style="padding-top: 30px")
+                img(src=json.questionText, alt="question image")
+
+            div.col-lg-6
+                div.row(style="padding-top: 30px")
+                    table.table
+                        tr
+                            td(style="width: 20%")
+                                strong answer
+                            td(style="width: 20%")
+                                strong percentage
+                            td(style="width: 50%" )
+                            td(style="width: 10%")
+                        if json
+                            for answer in json.answers
+                                tr
+                                    td #{answer.id}
+                                    td #{answer.percentage}
+                                    td
+                                        div.progress
+                                            - var percentage = answer.percentage; console.log(json);
+                                                if answer.correct
+                                                    div.progress-bar.progress-bar-success(style="width: "+percentage+"%")
+                                                else if  percentage<=10
+                                                    div.progress-bar.progress-bar-danger(style="width: "+percentage+"%")
+                                                else if  percentage<=50
+                                                    div.progress-bar.progress-bar-warning(style="width: "+percentage+"%")
+                                                else
+                                                    div.progress-bar.progress-bar(style="width: "+percentage+"%")
+                                    td
+                                        if answer.correct
+                                            img(src="/images/crown.png", alt="Moderators choice", height="20", width="30")
+                div.fb-comments(data-href="http://examinate.co.nz"+url, data-numposts="15", data-colorscheme="light", width="550")

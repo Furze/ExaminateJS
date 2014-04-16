@@ -41,10 +41,10 @@ app.get('/logout', routes.logout);
 //pages requiring fb login
 app.get('/submit', fb.ensureAuthenticated, routes.submit);
 app.get('/add', fb.ensureAuthenticated, routes.add);
-app.get('/question', fb.ensureAuthenticated, routes.question);
-app.get('/check', fb.ensureAuthenticated, routes.check);
+app.get('/answer', fb.ensureAuthenticated, routes.answer);
+app.get('/exam', fb.ensureAuthenticated, routes.check);
 app.get('/modify', fb.ensureAuthenticated, routes.modify);
-
+app.get('/question', fb.ensureAuthenticated, routes.question);
 //TEMP
 app.get('/courselanding', fb.ensureAuthenticated, routes.courseLanding)
 //fb auth pages
