@@ -6,7 +6,7 @@ block checkNav
 block content
   div.minitron
     div.container
-      h4 Check - #{course} #{exam}
+      h4 Results - #{course} #{exam}
     script window.fbAsyncInit = function() {FB.init({appId      : '{427162887386428}', status     : true, xfbml      : true });};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));
   div.container
     div.row
@@ -20,12 +20,15 @@ block content
                 strong Your answer
               td
                 strong People with same answer
-            if answers
-              for answer in answers
-                tr
-                  td #{answer.question}
-                  td #{answer.answer}
-                  td
+        if answers
+          for answer in answers
+            a.btn.btn-default.btn-block.course-button(href="/question?c=" + course + "&e=" + exam + "&q=" + answer.question, style="height: 60px")
+              div
+                  div.col-lg-2
+                    h5 #{answer.question}
+                  div.col-lg-3
+                    h5 #{answer.answer}
+                  div.col-lg-7
                     div.progress
                       - var percentage = ((answer.numSame/answer.totalAnswered)*100)
                         if  percentage<=20
@@ -36,4 +39,17 @@ block content
                           div.progress-bar.progress-bar-success(style="width: "+percentage+"%")
                         else
                           div.progress-bar.progress-bar(style="width: "+percentage+"%")
+                   // td #{answer.question}
+                    td #{answer.answer}
+                    td
+                      div.progress
+                        - var percentage = ((answer.numSame/answer.totalAnswered)*100)
+                          if  percentage<=20
+                            div.progress-bar.progress-bar-danger(style="width: "+percentage+"%")
+                          else if  percentage<=50
+                            div.progress-bar.progress-bar-warning(style="width: "+percentage+"%")
+                          else if  percentage>=85
+                            div.progress-bar.progress-bar-success(style="width: "+percentage+"%")
+                          else
+                            div.progress-bar.progress-bar(style="width: "+percentage+"%")
       div.fb-comments.col-lg-6(data-href="http://examinate.co.nz"+url, data-numposts="15", data-colorscheme="light", width="550")
