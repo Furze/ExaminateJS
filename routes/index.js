@@ -1,7 +1,7 @@
 //INDEX PAGE
 var http = require('http');
 
-var onlineServer = 'examinatedb.azurewebsites.net';
+var onlineServer = 'db.examinate.co.nz';
 var testingServer = 'localhost'; //LOCAL TESTING
 var server = onlineServer;
 var poort = 80;
@@ -155,7 +155,7 @@ exports.question = function(req, res){
     var options = {
         host: server,
         port: poort,
-        path: '/getquestion?uID=' + req.user.id + '&c=' + course + '&=e' + exam + '&q=' + question
+        path: '/getquestion?uID=' + req.user.id + '&c=' + course + '&e=' + exam + '&q=' + question
     };
     var getQuestion = http.get(options, function(resp) {
         var bodyChunks = [];

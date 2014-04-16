@@ -18,7 +18,7 @@ block content
                    h3 #{exam.type.charAt(0).toUpperCase() + exam.type.slice(1)} Semester #{exam.semester.charAt(0).toUpperCase() + exam.semester.slice(1)} #{exam.year}
                    p #{exam.answered}/#{exam.questions} Questions answered
                else
-                 a.btn.btn-default.btn-block.course-button(href="/exam?c=" + course + "&e=" + exam.year + "s" + exam.semester + "&q=" + (+exam.answered+1))
+                 a.btn.btn-default.btn-block.course-button(href="/exam?c=" + course + "&e=" + exam.year + "s" + exam.semester)
                    h3 #{exam.type.charAt(0).toUpperCase() + exam.type.slice(1)} Semester #{exam.semester.charAt(0).toUpperCase() + exam.semester.slice(1)} #{exam.year}
                    p #{exam.answered}/#{exam.questions} Questions answered
 
