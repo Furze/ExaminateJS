@@ -20,18 +20,15 @@ block content
       div.col-lg-6
         div.row(style="padding-top: 30px")
           table.table
-            tr
-              td(style="width: 20%")
-                strong answer
-              td(style="width: 20%")
-                strong percentage
-              td(style="width: 50%" )
-              td(style="width: 10%")
+            thead
+              tr
+                th Answer
+                th Number of people with this answer
+                th
             if json
               for answer in json.answers
                 tr
                   td #{answer.id}
-                  td #{answer.percentage}
                   td
                     div.progress
                       - var percentage = answer.percentage; console.log(json);

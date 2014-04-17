@@ -21,10 +21,10 @@ block content
             tbody
               if answers
                 for answer in answers
-                  tr.clickableRow(href="/question?c=" + course + "&e=" + exam + "&q=" + answer.question)
-                    td #{answer.question}
-                    td #{answer.answer}
-                    td
+                  tr.tr-clickable(href="/question?c=" + course + "&e=" + exam + "&q=" + answer.question, style="height:47px;")
+                    td(style="padding: 12px;") #{answer.question}
+                    td(style="padding: 12px;") #{answer.answer}
+                    td(style="padding: 12px;")
                       div.progress
                         - var percentage = ((answer.numSame/answer.totalAnswered)*100)
                         if  percentage<=20
