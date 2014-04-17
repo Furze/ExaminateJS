@@ -12,31 +12,27 @@ block content
     div.row
       div.col-lg-6(style="padding:0px 0px 0px 0px")
         div.row(style="padding: 30px 15px 0px 15px")
-          table.table
-            tr
-              td
-                strong Num
-              td
-                strong Your answer
-              td
-                strong People with same answer
-        if answers
-          for answer in answers
-            a.btn.btn-default.btn-block.course-button(href="/question?c=" + course + "&e=" + exam + "&q=" + answer.question, style="height: 43px; padding:5px 0px 0px 0px")
-              div
-                div.col-md-2
-                  h5 #{answer.question}
-                div.col-lg-3
-                  h5 #{answer.answer}
-                div.col-lg-7(style="padding-top:5px")
-                  div.progress
-                    - var percentage = ((answer.numSame/answer.totalAnswered)*100)
-                      if  percentage<=20
-                        div.progress-bar.progress-bar-danger(style="width: "+percentage+"%")
-                      else if  percentage<=50
-                        div.progress-bar.progress-bar-warning(style="width: "+percentage+"%")
-                      else if  percentage>=85
-                        div.progress-bar.progress-bar-success(style="width: "+percentage+"%")
-                      else
-                        div.progress-bar.progress-bar(style="width: "+percentage+"%")
+          table.table.table-hover
+            thead
+              tr
+                th Qu#
+                th Your answer
+                th People with the same answer
+            tbody
+              if answers
+                for answer in answers
+                  tr.clickableRow(href="/question?c=" + course + "&e=" + exam + "&q=" + answer.question)
+                    td #{answer.question}
+                    td #{answer.answer}
+                    td
+                      div.progress
+                        - var percentage = ((answer.numSame/answer.totalAnswered)*100)
+                        if  percentage<=20
+                          div.progress-bar.progress-bar-danger(style="width: "+percentage+"%")
+                        else if  percentage<=50
+                          div.progress-bar.progress-bar-warning(style="width: "+percentage+"%")
+                        else if  percentage>=85
+                          div.progress-bar.progress-bar-success(style="width: "+percentage+"%")
+                        else
+                          div.progress-bar.progress-bar(style="width: "+percentage+"%")
       div.fb-comments.col-lg-6(data-href="http://examinate.co.nz"+url, data-numposts="15", data-colorscheme="light", width="550")

@@ -20,10 +20,10 @@ block content
         h1 Welcome, #{user.displayName}
     div.container
       div.row
-        div.col-lg-8
+        div.col-lg-7
           h2 Search for a course
           div.input-group#main-search
-            div.input-group-btn
+            //div.input-group-btn
               button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown") Select a University
                 span.caret
               ul.dropdown-menu
@@ -34,7 +34,7 @@ block content
             input.form-control(type="input", placeholder="e.g. compsci 280")
             div.input-group-btn
               button.btn.btn-default(type="button") Go!
-        div.col-lg-4
+        div.col-lg-5
           h2 Your courses
           if courses
             for course in courses
