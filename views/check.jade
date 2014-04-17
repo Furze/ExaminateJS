@@ -25,7 +25,7 @@ block content
                     td(style="padding: 12px;") #{answer.question}
                     td(style="padding: 12px;") #{answer.answer}
                     td(style="padding: 12px;")
-                      div.progress
+                      div.progress(style="margin:0;")
                         - var percentage = ((answer.numSame/answer.totalAnswered)*100)
                         if  percentage<=20
                           div.progress-bar.progress-bar-danger(style="width: "+percentage+"%")

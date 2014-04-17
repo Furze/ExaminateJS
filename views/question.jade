@@ -30,16 +30,16 @@ block content
                 tr
                   td #{answer.id}
                   td
-                    div.progress
+                    div.progress(style="margin:0;")
                       - var percentage = answer.percentage; console.log(json);
                         if answer.correct
-                          div.progress-bar.progress-bar-success(style="width: "+percentage+"%")
+                          div.progress-bar.progress-bar-success(style="width: "+percentage+"%") #{answer.percentage}
                         else if  percentage<=10
-                          div.progress-bar.progress-bar-danger(style="width: "+percentage+"%")
+                          div.progress-bar.progress-bar-danger(style="width: "+percentage+"%") #{answer.percentage}
                         else if  percentage<=50
-                          div.progress-bar.progress-bar-warning(style="width: "+percentage+"%")
+                          div.progress-bar.progress-bar-warning(style="width: "+percentage+"%") #{answer.percentage}
                         else
-                          div.progress-bar.progress-bar(style="width: "+percentage+"%")
+                          div.progress-bar.progress-bar(style="width: "+percentage+"%") #{answer.percentage}
                   td
                     if answer.correct
                       span.glyphicon.glyphicon-star
