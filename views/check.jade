@@ -26,13 +26,13 @@ block content
                     td(style="padding: 12px;") #{answer.answer}
                     td(style="padding: 12px;")
                       div.progress(style="margin:0;")
-                        - var percentage = ((answer.numSame/answer.totalAnswered)*100)
+                        - var percentage = Math.floor(((answer.numSame/answer.totalAnswered)*100))
                         if  percentage<=20
-                          div.progress-bar.progress-bar-danger(style="width: "+percentage+"%")
+                          div.progress-bar.progress-bar-danger(style="width: "+percentage+"%") #{percentage}
                         else if  percentage<=50
-                          div.progress-bar.progress-bar-warning(style="width: "+percentage+"%")
+                          div.progress-bar.progress-bar-warning(style="width: "+percentage+"%") #{percentage}
                         else if  percentage>=85
-                          div.progress-bar.progress-bar-success(style="width: "+percentage+"%")
+                          div.progress-bar.progress-bar-success(style="width: "+percentage+"%") #{percentage}
                         else
-                          div.progress-bar.progress-bar(style="width: "+percentage+"%")
+                          div.progress-bar.progress-bar(style="width: "+percentage+"%") #{percentage}
       div.fb-comments.col-lg-6(data-href="http://examinate.co.nz"+url, data-numposts="15", data-colorscheme="light", width="550")

@@ -21,19 +21,28 @@ block content
     div.container
       div.row
         div.col-lg-7
-          h2 Search for a course
-          div.input-group#main-search
-            //div.input-group-btn
-              button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown") Select a University
-                span.caret
-              ul.dropdown-menu
-                li
-                  a(href="#") UoA
-                li
-                  a(href="#") Other uni..
-            input.form-control(type="input", placeholder="e.g. compsci 280")
-            div.input-group-btn
-              button.btn.btn-default(type="button") Go!
+          div.row
+            div.col-lg-12
+              h2 Search for a course
+              div.input-group#main-search
+                input.form-control(type="input", placeholder="e.g. compsci 280")
+                div.input-group-btn
+                  button.btn.btn-default(type="button") Go!
+          div.row
+            div.col-lg-12(style="height:30px")
+          div.row
+            div.col-lg-12
+              div.jumbotron(style="background-color: #fafafa;color:#000;text-align:left;")
+                h2 Welcome to Examinate
+                p Check out your courses on the right
+                p or search to add a new one
+                a.btn.btn-default.btn-lg(href="/about") Learn more
+          div.row
+            div.col-lg-12(style="height:30px")
+          div.row
+            div.col-lg-12
+              div.col-lg-12(style="border:1px solid;text-align:center;height:100px;")
+                p Advertising available
         div.col-lg-5
           h2 Your courses
           if courses

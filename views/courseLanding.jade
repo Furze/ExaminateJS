@@ -23,8 +23,15 @@ block content
                     h3 #{exam.type.charAt(0).toUpperCase() + exam.type.slice(1)} Semester #{exam.semester.charAt(0).toUpperCase() + exam.semester.slice(1)} #{exam.year}
                       span.glyphicon.glyphicon-ok(style="float:right;color:#3c763d;")
                     p Complete: #{exam.answered}/#{exam.questions} Questions answered
-
-
-     // div.col-lg-4 //do not need atm
-        a.btn.btn-default.btn-block.course-button(href="/add")
-          h3 +Add exam
+      div.col-lg-4
+        div.row
+          div.col-lg-12
+            a.btn.btn-default.btn-block.course-button(href="#")
+              h3 +Add exam
+              p Sumbit answers for a new exam
+        div.row
+          div.col-lg-12(style="height:35px")
+        div.row
+          div.col-lg-12
+            div.col-lg-12(style="border:1px solid;text-align:center;height:300px;")
+              p Advertising available
