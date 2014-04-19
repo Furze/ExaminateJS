@@ -45,7 +45,10 @@ app.get('/answer', fb.ensureAuthenticated, routes.answer);
 app.get('/exam', fb.ensureAuthenticated, routes.check);
 app.get('/modify', fb.ensureAuthenticated, routes.modify);
 app.get('/question', fb.ensureAuthenticated, routes.question);
-//TEMP
+
+//TEMP GET UID
+app.get('/getuid', fb.ensureAuthenticated, routes.uid);
+
 app.get('/courselanding', fb.ensureAuthenticated, routes.courseLanding)
 //fb auth pages
 app.get('/auth/facebook', fb.passport.authenticate('facebook'));
