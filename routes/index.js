@@ -54,7 +54,7 @@ exports.submit = function(req, res){
             //incorrect answer
             res.redirect('/answer?c=' + req.query.c +'&e='+ req.query.e +'&q=' + nextQ + '&error=true'); //TODO isn't showing ):
         }
-    } else { //is back
+    } else { //is back a
         nextQ = req.query.q-1;
     }
     res.redirect('/answer?c=' + req.query.c +'&e='+ req.query.e +'&q=' + nextQ);
