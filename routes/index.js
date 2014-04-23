@@ -3,8 +3,8 @@ var http = require('http');
 
 var onlineServer = 'db.examinate.co.nz';
 var testingServer = 'localhost'; //LOCAL TESTING
-var server = onlineServer;
-var poort = 80;
+var server = onlineServer;//testingServer;
+var poort = 80;//3001;
 
 exports.index = function(req, res){
 
@@ -14,7 +14,7 @@ exports.index = function(req, res){
           port: poort, //ONLY FOR LOCAL TESTING*/
           path: '/getcourses?uID=' + req.user.id
       };
-
+      console.log(options.host);
       var getCourses = http.get(options, function(resp) {
           var bodyChunks = [];
           resp.on('data', function(chunk) {
@@ -98,6 +98,11 @@ exports.check = function(req, res){
 //add
 exports.add = function(req, res){
     res.render('check', { user: req.user, title: 'Examinate - Check', url: req.url });
+};
+
+//add
+exports.uid = function(req, res){
+    res.render('uid', { user: req.user, title: 'Examinate - uID', url: req.url });
 };
 
 //modify page
